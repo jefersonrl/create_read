@@ -22,6 +22,14 @@ app.get("/consulta", function(req, res){
     })
 })
 
+app.get("/editar/:id", function(req, res){
+    post.findAll({where: {'id': req.params.id}}).then(function(post){
+        res.render("editar", {post})
+    }).catch(function(erro){
+        console.log("Erro ao carregar dados do banco: " + erro)
+    })
+})
+
 app.get("/excluir/:id", function(req, res){
     post.destroy({where: {'id': req.params.id}}).then(function(){
         res.render("primeira_pagina")
